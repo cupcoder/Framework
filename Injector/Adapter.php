@@ -20,8 +20,8 @@
 			return isset($this->storage[$name]);
 		}
 		
-		public function set($name, $handle) {
-			$this->storage[$name] = new Exemplar($name, $handle);
+		public function set($name, $handle, $need = false) {
+			$this->storage[$name] = new Exemplar($name, $handle, $need);
 		}
 		
 		public function get($name) {

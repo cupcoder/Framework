@@ -14,8 +14,8 @@
 			return Router\Adapter::shared()->add('ALL', $route, $handle);
 		}
 		
-		public function set($name, $handle) {
-			Injector\Adapter::shared()->set($name, $handle);
+		public function set($name, $handle, $need = false) {
+			Injector\Adapter::shared()->set($name, $handle, $need);
 		}
 		
 		public function error($handle) {
