@@ -18,7 +18,7 @@
 		public function show() {
 			if (self::$_handle === null) {
 				http_response_code($this->code);
-				echo $this->code;
+				echo $this->rcode;
 			} else {
 				call_user_func_array(self::$_handle, [
 					$this->rcode,
