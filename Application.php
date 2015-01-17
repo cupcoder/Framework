@@ -17,6 +17,18 @@
 		public function set($name, $handle, $need = false) {
 			Injector\Adapter::shared()->set($name, $handle, $need);
 		}
+
+		public function register($types = []) {
+			if (is_array($types)) {
+				foreach ($types as $type => $path) {
+					switch ($type) {
+						case 'controllers':
+							Router\Adapter::shared()->register($path);
+							break;
+					}
+				} 
+			}
+		}
 		
 		public function error($handle) {
 			Exception::handle($handle);

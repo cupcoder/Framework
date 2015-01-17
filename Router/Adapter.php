@@ -3,11 +3,20 @@
 	
 	class Adapter {
 		static private $_shared;
+
 		private $storage = [];
 		
 		public function add($type, $route, $handle) {
 			$this->storage[] = $exemplar = new Exemplar($type, $route, $handle);
 			return $exemplar;
+		}
+
+		public function register($path) {
+			spl_autoload_register(function($class) use ($path) {
+				if (is_file($path . '/' . $class . '.php')) {
+					require_once $path . '/' . $class . '.php';
+				}
+			});
 		}
 		
 		public function exec($method, $uri) {
