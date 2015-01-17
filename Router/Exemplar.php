@@ -45,6 +45,7 @@
 			if (preg_match($this->route, $uri, $params)) {
 				array_shift($params);
 				if (count($this->before) > 0) {
+					die(__DIR__);
 					$beforeObject = new \BeforeController();
 					foreach ($this->before as $before) {
 						if (($return = call_user_func_array([$beforeObject, $before . 'Action'], $params)) !== null) {
