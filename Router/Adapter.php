@@ -12,11 +12,22 @@
 		}
 
 		public function register($path) {
-			spl_autoload_register(function($class) use ($path) {
-				if (is_file($path . '/' . $class . '.php')) {
-					require_once $path . '/' . $class . '.php';
+			if (is_array($path)) {
+				foreach ($path as $p) {
+					spl_autoload_register(function($class) use ($p) {
+						if (is_file($p . '/' . $class . '.php')) {
+							require_once $p . '/' . $class . '.php';
+						}
+					});
 				}
-			});
+			}else {
+				spl_autoload_register(function($class) use ($path) {
+					if (is_file($path . '/' . $class . '.php')) {
+						require_once $path . '/' . $class . '.php';
+					}
+				});
+			}
+			
 		}
 		
 		public function exec($method, $uri) {
